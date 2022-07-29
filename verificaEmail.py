@@ -1,3 +1,6 @@
+import re
+from time import sleep
+
 def verifica_email():
     pat = "^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\.[a-z]{1,3}$"
     while True:
