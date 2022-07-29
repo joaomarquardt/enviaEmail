@@ -1,18 +1,5 @@
-import smtplib
+import smtplib, email.message, csv, re
 from time import sleep
-import email.message
-import csv
-import re
-
-def verifica_email():
-    pat = "^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\.[a-z]{1,3}$"
-    while True:
-        email_remetente = str(input("Email remetente: ")).strip()
-        if re.match(pat, email_remetente):
-            return email_remetente
-        else:
-            print("[ERRO] Email inválido. Tente novamente.")
-            sleep(1)
 
 def envia_email(arq, remetente, password):
     subject = str(input('Assunto: ')).strip().capitalize()
@@ -38,7 +25,6 @@ def envia_email(arq, remetente, password):
                 msg.set_payload(corpo_email)
                 smtp.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
     print('Email(s) enviado(s)!')
-
 
 print(f'\033[33;1;4m{" ENVIAR EMAIL ":=^30}\033[m')
 sleep(1)
