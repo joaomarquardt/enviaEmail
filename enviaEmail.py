@@ -2,17 +2,17 @@ import smtplib, email.message, csv
 from time import sleep
 import verificaEmail as vremail
 
-def envia_email(arq, remetente, password):
+def envia_email(arqcsv, remetente, password):
     subject = str(input('Assunto: ')).strip().capitalize()
     senha = password
     smtp = smtplib.SMTP('smtp.gmail.com: 587')
     smtp.starttls()
     smtp.login(remetente, senha)
-    with open(arq, 'r', encoding='utf-8') as arquivo:
+    with open(arqcsv, 'r', encoding='utf-8') as arquivo:
         arquivo_csv = csv.reader(arquivo, delimiter=',')
-        print('alo')
         for i, linha in enumerate(arquivo_csv):
             if i > 0:
+                print('alo3')
                 msg = email.message.Message()
                 msg['From'] = remetente
                 msg['Subject'] = subject
