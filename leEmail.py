@@ -21,7 +21,7 @@ def le_email(email_login, password):
     imap = MailBox("imap.gmail.com")
     meu_email = imap.login(email_login, password)
     with meu_email as mailbox:
-        for msg in mailbox.fetch(AND(from_='marquardt1402@gmail.com', subject='Registro de alunos')):
+        for msg in mailbox.fetch(AND(from_='marquardt1402@gmail.com', subject='a')):
             if (len(msg.attachments) > 0):
                 for anexo in msg.attachments:
                     if 'lista_alunos.csv' in anexo.filename:
@@ -30,8 +30,7 @@ def le_email(email_login, password):
                             arquivo.write(informacoes)
                         with open('lista_alunos.csv', 'r', encoding='utf-8') as arquivo_csv:
                             envia_email("lista_alunos.csv", email_login, password)
-
-
+            mailbox.delete(msg.uid)
 print(f'\033[33;1;4m{" LER EMAIL ":=^30}\033[m')
 email_login = 'enviaemailteste14@gmail.com'
 password = 'omijmsvwyqapmbhj'
